@@ -1,0 +1,31 @@
+/*
+Enter your query here.
+*/
+
+(SELECT
+    city, length(city)
+FROM
+    station
+WHERE city IN
+            (SELECT
+                city
+            FROM 
+                station
+            ORDER BY length(city))
+ORDER BY length(city), city
+LIMIT 1)
+
+UNION
+
+(SELECT
+    city, length(city)
+FROM
+    station
+WHERE city IN
+            (SELECT
+                city
+            FROM 
+                station
+            ORDER BY length(city))
+ORDER BY length(city) DESC, city DESC
+LIMIT 1)
